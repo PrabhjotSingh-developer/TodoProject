@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+.text-font{
+    font-family: "Outfit", sans-serif;
+}
+
+.text-color{
+    color: #3D8D40;
+
+}
+.back-color{
+    background: #EEF6EF;
+
+}
+ .back-color-whitish{
+    background: #FBFDFC;
+
+ }
+
+.active {
+     background: #35793729;
+     color:  #357937;
+     
+
+}
+.chart{
+    box-shadow: 0px 1.33px 6.65px 0px #0000001A;
+
+}
+.chart .totalTasks{
+    border-bottom: 1.33px solid  #F0F0F0;
+   
+}
