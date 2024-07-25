@@ -31,3 +31,13 @@
     border-bottom: 1.33px solid  #F0F0F0;
    
 }
+.addTaskBox{
+ 
+    background: linear-gradient(0deg, rgba(53, 121, 55, 0.1) 0%, rgba(208, 255, 210, 0.1) 100%);
+    border-top: 1.5px solid #496E4B33
+
+}
+.sidebar{
+    /* transform: translateX(-150%); */
+    /* display: none; */
+}

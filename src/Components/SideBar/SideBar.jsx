@@ -8,18 +8,20 @@ import MiniChart from "../PieChart/MiniChart.jsx";
 import profile from "../../assets/profile.png";
 import "../../App.css";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { mobileToggle  } from "../../Features/Todo/MenuSlice.js";
 const LinksNames = [
   {
     name: "All Tasks",
     icon: <MdOutlineEventNote width={70} />,
     id: 1,
-    path: "",
+    path: "Alltasks",
   },
   {
     name: "Today",
     icon: <CiCalendar />,
     id: 2,
-    path: "today",
+    path: "/",
   },
   {
     name: "Important",
@@ -43,14 +45,23 @@ const LinksNames = [
 ];
 const SideBar = () => {
   const [isActive, setIsActive] = useState(false);
+  const theme = useSelector((state)=>state.theme.theme)
+  const mobileBar = useSelector((state)=>state.menubar.mobileBar);
+  const dispatch = useDispatch();
+  const bgColor = (theme === "light") ?"back-color":"bg-[#2C2C2C]"
+  function closeMenubar()
+  {
+    
+      dispatch(mobileToggle())
+  }
   return (
-    <div className="flex justify-center w-[280px] flex-col items-center relative py-5">
-      <div className=" w-[118px] h-[118px]">
+    <div className={`flex justify-center  px-24 flex-col items-center relative pt-5 `} style={{transition:".3s linear all"}}>
+      <div className=" w-[118px] h-[118px] ">
         <img src={profile} alt="" className="w-[100%] h-[100%]" />
       </div>
-      <div className="contentBox back-color w-[100%] flex flex-col items-center absolute top-[50%] z-[-1] pt-16 h-[850px] text-font gap-[9px]">
+      <div className={`contentBox ${bgColor} w-[100%] flex flex-col items-center absolute top-[60%] z-[-1] pt-[4.5rem] h-[850px] text-font gap-[9px]`}>
         <h2 className="font-normal leading-[20px] text-[15px]">Hey, ABCD</h2>
-        <div className="back-color-whitish py-[24px] w-[240px] mainLinks">
+        <div className={`${theme === 'light'?'back-color-whitish':"bg-[#232323]"} py-[24px] w-[240px] mainLinks`}>
           <ul className="">
             {LinksNames.map((item) => {
               return (
@@ -58,17 +69,19 @@ const SideBar = () => {
                   <NavLink
                     to={item.path}
                     className="flex items-center gap-[16px] py-[8px] px-[16px] text-[15px] rounded-[16px]"
-                    activeclassname="activ"
+                    activeclassname="active"
+                    onClick={()=> mobileBar ? closeMenubar() : ''}
                   >
                     <span className="text-[24px]">{item.icon}</span>
-                    {item.name}
+                      {item.name}
+          
                   </NavLink>
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="addList back-color-whitish  w-[240px] py-[24px] ">
+        <div className={`addList  w-[240px] py-[24px] ${theme === 'light'? 'back-color-whitish':"bg-[#232323]"}`}>
           <div className="inner flex gap-[16px] py-[8px] px-[16px] ">
             <FaPlus className="text-[20px]" />
             <h2 className="text-[15px] font-normal   ">Add list</h2>
@@ -76,7 +89,7 @@ const SideBar = () => {
         </div>
 
         {/* Below div contain total task and chart */}
-        <div className="chart  flex items-center flex-col w-[236px] h-[307px] back-color-whitish text-font" >
+        <div className={`chart  flex items-center flex-col w-[236px] h-[307px]  text-font ${theme === 'light'? 'back-color-whitish':"bg-[#232323]"}`} >
           <div className="totalTasks flex flex-col w-[100%] px-[8px] py-[16px]  ">
             <div className="flex justify-between items-center w-[100%] ">
               <h3 className="text-14px">Today Tasks</h3>
@@ -84,17 +97,17 @@ const SideBar = () => {
             </div>
             <p className="text-[22px] font-semibold">12</p>
           </div>
-          <div className="mainChart">
+          <div className="mainChart py-4">
             <MiniChart />
              {/* labels */}
              <div className="labels flex gap-2 items-center mt-2">
                   <div  className="flex gap-1 items-center">
                       <span className="w-[6px] h-[6px] rounded-full bg-[#3F9142] "></span>
-                      <p className="text-[7.98px] font-normal leading-[9.65px]">Pending</p>
+                      <p className="text-[12px] font-normal leading-[9.65px]">Pending</p>
                   </div>
                   <div className="flex gap-1 items-center">
                        <span className="w-[6px] h-[6px] rounded-full bg-[#142E15]"></span>
-                       <p className="text-[7.98px] font-normal leading-[9.65px]">Done</p>
+                       <p className="text-[12px] font-normal leading-[9.65px]">Done</p>
                   </div>
              </div>
           </div>
