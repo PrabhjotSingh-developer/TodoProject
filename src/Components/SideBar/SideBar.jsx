@@ -13,21 +13,20 @@ import { mobileToggle  } from "../../Features/Todo/MenuSlice.js";
 const LinksNames = [
   {
     name: "All Tasks",
-    icon: <MdOutlineEventNote width={70} />,
-    id: 1,
-    path: "Alltasks",
+    icon: <MdOutlineEventNote  />,
+    id: 2,
+    path: "alltasks",
   },
   {
     name: "Today",
     icon: <CiCalendar />,
-    id: 2,
-    path: "/",
+    id: 1,
+    path: "",
   },
   {
     name: "Important",
     icon: <CiStar />,
     path: "important",
-
     id: 3,
   },
   {
@@ -44,7 +43,7 @@ const LinksNames = [
   },
 ];
 const SideBar = () => {
-  const [isActive, setIsActive] = useState(false);
+ 
   const theme = useSelector((state)=>state.theme.theme)
   const mobileBar = useSelector((state)=>state.menubar.mobileBar);
   const dispatch = useDispatch();
@@ -55,7 +54,7 @@ const SideBar = () => {
       dispatch(mobileToggle())
   }
   return (
-    <div className={`flex justify-center  px-24 flex-col items-center relative pt-5 `} style={{transition:".3s linear all"}}>
+    <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-5 `} style={{transition:".2s linear all"}}>
       <div className=" w-[118px] h-[118px] ">
         <img src={profile} alt="" className="w-[100%] h-[100%]" />
       </div>
@@ -64,13 +63,14 @@ const SideBar = () => {
         <div className={`${theme === 'light'?'back-color-whitish':"bg-[#232323]"} py-[24px] w-[240px] mainLinks`}>
           <ul className="">
             {LinksNames.map((item) => {
+             
               return (
                 <li key={item.id} className={``}>
                   <NavLink
                     to={item.path}
                     className="flex items-center gap-[16px] py-[8px] px-[16px] text-[15px] rounded-[16px]"
                     activeclassname="active"
-                    onClick={()=> mobileBar ? closeMenubar() : ''}
+                    onClick={()=>mobileBar&& closeMenubar()}
                   >
                     <span className="text-[24px]">{item.icon}</span>
                       {item.name}

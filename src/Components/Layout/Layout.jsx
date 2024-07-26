@@ -14,7 +14,7 @@ const Layout = () => {
         <div className='hidden lg:flex '>
            <SideBar/>
         </div>
-        <div className={`w-[100%]  lg:mt-0 ${mobileBar?'opacity-[0.2] ':''}`}>
+        <div className={`w-[100%] lg:mt-0 ${mobileBar?'opacity-[0.2] ':''}`}>
            <Outlet/>
         </div>
      </div>

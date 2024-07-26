@@ -34,7 +34,7 @@ const AddTask = () => {
         <MdOutlineArrowDropDown />
       </div>
       <div className="addTaskBox  w-[100%] px-[20px] py-[20px] md:py-[30px]">
-        <div className="h-[146px] xl:w-[667px] w-[100%] ">
+        <div className="h-[100px] sm:h-[146px] xl:w-[667px] w-[100%] ">
           <textarea
             type="text"
             placeholder="Add A Tasks"
