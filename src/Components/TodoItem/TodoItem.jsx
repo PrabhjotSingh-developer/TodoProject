@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../App.css'
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar,FaStar } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
-import {isTodoCompleted} from '../../Features/Todo/TodoSlice.js'
+import {isTodoCompleted,setImportantTasks} from '../../Features/Todo/TodoSlice.js'
 const TodoItem = ({item}) => {
     // console.log(item.content)
     const dispatch = useDispatch()
@@ -10,6 +10,11 @@ const TodoItem = ({item}) => {
     {
       dispatch(isTodoCompleted(id))
       console.log(item.completed)
+    }
+    function importantToggle(id)
+    {
+       dispatch(setImportantTasks(id))
+       console.log(item)
     }
   return (
     <div className='w-[100%] h-[80px] py-[16px] pr-[32px] text-font flex items-center justify-between ' style={{borderTop:"1.5px solid #496E4B"}}>
@@ -20,7 +25,11 @@ const TodoItem = ({item}) => {
            </p>
         </div>
         <div>
-             <FaRegStar className='text-[24px]'/>
+             { item?.important ?
+             <FaStar className='text-[24px]' onClick={()=>importantToggle(item.id)}/>
+               :  <FaRegStar className='text-[24px]' onClick={()=>importantToggle(item.id)}/>
+          }
+           
         </div> 
     </div>
   )

@@ -18,9 +18,16 @@ const TodoSlice = createSlice({
                  todo.completed = !todo.completed
             }
            
+        },
+        setImportantTasks:(state,action)=>{
+             const todo = state.allTask.find(todo=>todo.id == action.payload)
+             if(todo)
+             {
+                todo.important = !todo.important
+             }
         }
 
     }
 })
-export const {addTodo,isTodoCompleted} = TodoSlice.actions;
+export const {addTodo,isTodoCompleted,setImportantTasks} = TodoSlice.actions;
 export default TodoSlice.reducer

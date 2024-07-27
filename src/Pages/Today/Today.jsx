@@ -4,36 +4,43 @@ import TodoItem from "../../Components/TodoItem/TodoItem";
 import { useSelector } from "react-redux";
 const Today = () => {
   const allTasks = useSelector((state) => state.todos.allTask);
- console.log(allTasks)
+  console.log(allTasks);
   const [todayTasks, setTodayTasks] = useState([]);
   useEffect(() => {
-    let date = new Date().toISOString();
+    let date = new Date().toISOString().slice(0, 10);
+    console.log(date);
     const today = allTasks.filter((item) => {
-      if (item.date.substr(0, 9) === date.substr(0, 9)) return item;
+      if (item.date.slice(0, 10) === date) return item;
     });
     setTodayTasks(today);
-  }, allTasks);
+  }, [allTasks]);
   return (
     <div>
       <AddTask />
-      <div className="todayTasks">
+
         {todayTasks.length > 0 ? (
+          <div className="todayTasks">
+         <h2 className='py-4 px-2 text-font text-[30px]'>Today Tasks</h2>
+             
+          {
           todayTasks.map((item) => {
-            console.log(item)
+           
             if (!item.completed) return <TodoItem item={item} key={item.id} />;
           })
+        }
+         </div>
         ) : (
           <h3>No Task recorded</h3>
         )}
-     </div>
+      {todayTasks.length > 0 &&
       <div className="completedTask">
-         <p className="text-font text-[15px] my-2 px-4">Completed</p>
-         {todayTasks.length > 0 &&
-          todayTasks.map((item) => {
-            if (item.completed) return <TodoItem item={item} key={item.id} />;
-          })}
+        <p className="text-font text-[15px] my-2 px-4">Completed</p>
+
+        {todayTasks.map((item) => {
+          if (item.completed) return <TodoItem item={item} key={item.id} />;
+        })}
       </div>
-       
+}
     </div>
   );
 };
