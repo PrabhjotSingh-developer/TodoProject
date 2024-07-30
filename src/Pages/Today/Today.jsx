@@ -4,8 +4,8 @@ import TodoItem from "../../Components/TodoItem/TodoItem";
 import { useSelector } from "react-redux";
 const Today = () => {
   const allTasks = useSelector((state) => state.todos.allTask);
-  console.log(allTasks);
   const [todayTasks, setTodayTasks] = useState([]);
+  
   useEffect(() => {
     let date = new Date().toISOString().slice(0, 10);
     console.log(date);
@@ -15,9 +15,8 @@ const Today = () => {
     setTodayTasks(today);
   }, [allTasks]);
   return (
-    <div>
+    <div className="w-[100%]">
       <AddTask />
-
         {todayTasks.length > 0 ? (
           <div className="todayTasks">
          <h2 className='py-4 px-2 text-font text-[30px]'>Today Tasks</h2>
@@ -34,7 +33,7 @@ const Today = () => {
         )}
       {todayTasks.length > 0 &&
       <div className="completedTask">
-        <p className="text-font text-[15px] my-2 px-4">Completed</p>
+        <p className="text-font text-[15px] my-2 px-4 ">Completed</p>
 
         {todayTasks.map((item) => {
           if (item.completed) return <TodoItem item={item} key={item.id} />;

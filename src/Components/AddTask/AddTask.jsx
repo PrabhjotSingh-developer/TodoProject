@@ -22,7 +22,7 @@ const AddTask = () => {
             content:newTodoItem,
             date:currentDate,
             completed:false,
-            Important:false
+            important:false
           }))
      }
      setTodoItem('');
