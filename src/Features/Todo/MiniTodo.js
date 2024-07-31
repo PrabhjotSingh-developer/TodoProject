@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    miniTodo:{},
+    miniTodo:{
+        isOpen:false,
+        
+    },
 }
 const MiniTodoSlice = createSlice({
     name:"miniBar",

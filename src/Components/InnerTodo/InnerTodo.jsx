@@ -6,6 +6,8 @@ import { isTodoCompleted,setImportantTasks } from "../../Features/Todo/TodoSlice
 import { toggleMiniTodo } from "../../Features/Todo/MiniTodo";
 const InnerTodo = ({ item }) => {
   console.log(item)
+  if(item!==undefined)
+  {
   const [innerItem,setInnerItem] = useState(item);
   const theme = useSelector((state) => state.theme.theme);
   const allTodos = useSelector((state)=>state.todos.allTask)
@@ -22,13 +24,14 @@ const InnerTodo = ({ item }) => {
      dispatch(setImportantTasks(id))
      console.log(item)
   }
+
   useEffect(()=>{
      const upItem = allTodos.find((i)=>i.id === item.id)
      console.log(upItem)
      setInnerItem(upItem)
   },[allTodos,item])
   return (
-    <div className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[100%] `} >
+    <div className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[100%] `}  >
       <div
         className="w-[100%] h-[80px] py-[16px] pr-[32px] text-font flex items-center justify-between"
         style={{ borderTop: "1.5px solid #496E4B" }}
@@ -70,6 +73,7 @@ const InnerTodo = ({ item }) => {
       <button className="border-top" onClick={()=>dispatch(toggleMiniTodo({isOpen:false,item}))}> Close Edit Bar</button>
     </div>
   );
+}
 };
 
 export default InnerTodo;

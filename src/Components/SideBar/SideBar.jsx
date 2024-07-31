@@ -10,6 +10,7 @@ import "../../App.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { mobileToggle  } from "../../Features/Todo/MenuSlice.js";
+import { toggleMiniTodo } from "../../Features/Todo/MiniTodo.js";
 const LinksNames = [
   {
     name: "All Tasks",
@@ -50,8 +51,9 @@ const SideBar = () => {
   const bgColor = (theme === "light") ?"back-color":"bg-[#2C2C2C]"
   function closeMenubar()
   {
-    
+    dispatch(toggleMiniTodo({isOpen:false}))
       dispatch(mobileToggle())
+     
   }
   return (
     <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-5 `} style={{transition:".2s linear all"}}>
@@ -70,7 +72,7 @@ const SideBar = () => {
                     to={item.path}
                     className="flex items-center gap-[16px] py-[8px] px-[16px] text-[15px] rounded-[16px]"
                     activeclassname="active"
-                    onClick={()=>mobileBar&& closeMenubar()}
+                    onClick={()=>mobileBar ? closeMenubar():  dispatch(toggleMiniTodo({isOpen:false}))}
                   >
                     <span className="text-[24px]">{item.icon}</span>
                       {item.name}
