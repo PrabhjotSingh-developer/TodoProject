@@ -50,12 +50,12 @@ const Navbar = () => {
       </nav>
       {/* <SideBar/> */}
       <div
-        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%]  ${
+        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%] ${
           mobileBar ? "" : "translate-x-[-120%] "
         }`}
-        style={{ transition: ".2s linear all" }}
+        style={{ transition: ".3s linear all" }}
       >
-        <div className="absolute top-0 w-[100%]">
+        <div className="absolute top-0 w-[100%]  ">
           <SideBar />
         </div>
       </div>

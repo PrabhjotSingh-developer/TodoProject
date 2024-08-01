@@ -15,7 +15,7 @@ const Today = () => {
     setTodayTasks(today);
   }, [allTasks]);
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] h-[100%]">
       <AddTask />
         {todayTasks.length > 0 ? (
           <div className="todayTasks">

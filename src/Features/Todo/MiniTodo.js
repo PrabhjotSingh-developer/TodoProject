@@ -10,6 +10,7 @@ const MiniTodoSlice = createSlice({
     initialState,
     reducers:{
         toggleMiniTodo:(state,action)=>{
+            console.log(action.payload)
             state.miniTodo = action.payload
             
         }

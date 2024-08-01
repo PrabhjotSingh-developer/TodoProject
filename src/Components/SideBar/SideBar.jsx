@@ -51,16 +51,18 @@ const SideBar = () => {
   const bgColor = (theme === "light") ?"back-color":"bg-[#2C2C2C]"
   function closeMenubar()
   {
-    dispatch(toggleMiniTodo({isOpen:false}))
-      dispatch(mobileToggle())
+
+      dispatch(toggleMiniTodo({...state,isOpen:false}))
+        dispatch(mobileToggle())
+      
      
   }
   return (
-    <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-5 `} style={{transition:".2s linear all"}}>
+    <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-4 `} style={{transition:".3s linear all"}}>
       <div className=" w-[118px] h-[118px] ">
         <img src={profile} alt="" className="w-[100%] h-[100%]" />
       </div>
-      <div className={`contentBox ${bgColor} w-[100%] flex flex-col items-center absolute top-[60%] z-[-1] pt-[4.5rem] h-[850px] text-font gap-[9px]`}>
+      <div className={`contentBox ${bgColor} w-[100%] flex flex-col items-center absolute top-[60%] z-[-1] pt-[4.5rem] h-[900px] text-font gap-[9px]`}>
         <h2 className="font-normal leading-[20px] text-[15px]">Hey, ABCD</h2>
         <div className={`${theme === 'light'?'back-color-whitish':"bg-[#232323]"} py-[24px] w-[240px] mainLinks`}>
           <ul className="">
@@ -72,7 +74,7 @@ const SideBar = () => {
                     to={item.path}
                     className="flex items-center gap-[16px] py-[8px] px-[16px] text-[15px] rounded-[16px]"
                     activeclassname="active"
-                    onClick={()=>mobileBar ? closeMenubar():  dispatch(toggleMiniTodo({isOpen:false}))}
+                    onClick={()=>mobileBar ? closeMenubar() :  dispatch(toggleMiniTodo({...state, isOpen:false}))}
                   >
                     <span className="text-[24px]">{item.icon}</span>
                       {item.name}

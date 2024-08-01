@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+/* Basic utility classes */
 .text-font{
     font-family: "Outfit", sans-serif;
 }
@@ -37,7 +38,12 @@
     border-top: 1.5px solid #496E4B33
 
 }
-.sidebar{
-    /* transform: translateX(-150%); */
-    /* display: none; */
+.outletDiv::-webkit-scrollbar{
+    display: none;
+}
+/* mediaqueries for innerTodo or edit option */
+@media screen and (max-width:400px){
+      .innerTodoEdit::-webkit-scrollbar {
+         display: none;
+      }
 }

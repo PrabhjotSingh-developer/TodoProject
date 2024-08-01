@@ -4,10 +4,9 @@ import { useSelector,useDispatch } from "react-redux";
 import { FaRegStar,FaStar } from "react-icons/fa";
 import { isTodoCompleted,setImportantTasks } from "../../Features/Todo/TodoSlice";
 import { toggleMiniTodo } from "../../Features/Todo/MiniTodo";
+import { MdOutlineEdit } from "react-icons/md";
 const InnerTodo = ({ item }) => {
   console.log(item)
-  if(item!==undefined)
-  {
   const [innerItem,setInnerItem] = useState(item);
   const theme = useSelector((state) => state.theme.theme);
   const allTodos = useSelector((state)=>state.todos.allTask)
@@ -24,14 +23,15 @@ const InnerTodo = ({ item }) => {
      dispatch(setImportantTasks(id))
      console.log(item)
   }
-
+ 
   useEffect(()=>{
      const upItem = allTodos.find((i)=>i.id === item.id)
      console.log(upItem)
      setInnerItem(upItem)
   },[allTodos,item])
-  return (
-    <div className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[100%] `}  >
+  
+   return (
+    <div className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[100%]  mainTodo`}  >
       <div
         className="w-[100%] h-[80px] py-[16px] pr-[32px] text-font flex items-center justify-between"
         style={{ borderTop: "1.5px solid #496E4B" }}
@@ -68,12 +68,15 @@ const InnerTodo = ({ item }) => {
           )}
         </div>
       </div>
-      <button className="border-top">Edit Todo</button>
-      <button className="border-top">Delete Todo</button>
-      <button className="border-top" onClick={()=>dispatch(toggleMiniTodo({isOpen:false,item}))}> Close Edit Bar</button>
+      <div className="flex gap-3 flex-col items-center">
+         <button className="border-top flex gap-1 items-center"> <MdOutlineEdit/> Edit Todo</button>
+      <button className="border-top gap-1 items-center">Delete Todo</button>
+      <button className="border-top gap-1 items-center" onClick={()=> dispatch(toggleMiniTodo({isOpen:false,item}))}> Close Edit Bar</button>
+      </div>
+     
     </div>
   );
-}
+
 };
 
 export default InnerTodo;
