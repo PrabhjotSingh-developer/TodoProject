@@ -7,7 +7,7 @@ const COLORS = ['#3F9142', ' #142E15']
 const MiniChart = () => {
 
 const allTodos = useSelector((state)=>state.todos.allTask);
-console.log(allTodos)
+
 const [completedTask,setCompletedTask] = useState([]);
 useEffect(()=>{
     const items = allTodos.filter((item)=>item.completed === true )

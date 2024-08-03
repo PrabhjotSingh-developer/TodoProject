@@ -47,15 +47,13 @@ const SideBar = () => {
   const allTodos = useSelector((state)=>state.todos.allTask)
   const theme = useSelector((state)=>state.theme.theme)
   const mobileBar = useSelector((state)=>state.menubar.mobileBar);
+  const miniState = useSelector((state)=>state.miniBar.miniTodo)
   const dispatch = useDispatch();
   const bgColor = (theme === "light") ?"back-color":"bg-[#2C2C2C]"
   function closeMenubar()
   {
-
       dispatch(toggleMiniTodo({...state,isOpen:false}))
         dispatch(mobileToggle())
-      
-     
   }
   return (
     <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-4 ${bgColor}`} >
@@ -74,7 +72,11 @@ const SideBar = () => {
                     to={item.path}
                     className="flex items-center gap-[16px] py-[8px] px-[16px] text-[15px] rounded-[16px]"
                     activeclassname="active"
-                    onClick={()=>mobileBar ? closeMenubar() :  dispatch(toggleMiniTodo({...state, isOpen:false}))}
+                    onClick={()=>
+                      {mobileBar && closeMenubar() 
+                         if(miniState.isOpen)
+                            dispatch(toggleMiniTodo({isOpen:false}))
+                      }}
                   >
                     <span className="text-[24px]">{item.icon}</span>
                       {item.name}

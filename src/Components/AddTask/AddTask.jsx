@@ -5,6 +5,7 @@ import { FaRegBell, FaRegCalendar } from "react-icons/fa";
 import { FaRepeat } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import {addTodo}  from '../../Features/Todo/TodoSlice.js'
+import { toast } from "react-toastify";
 const AddTask = () => {
   const theme = useSelector((state) => state.theme);
   const [newTodoItem, setTodoItem] = useState("");
@@ -13,7 +14,7 @@ const AddTask = () => {
   function addTodoItem()
   {
      if(newTodoItem === "")
-        alert("Todo Is not Empty")
+        toast.error("Todo is not Empty")
      else 
      {
          const currentDate = new Date().toISOString();
@@ -24,6 +25,7 @@ const AddTask = () => {
             completed:false,
             important:false
           }))
+          toast.success("Todo Added Successfully")
      }
      setTodoItem('');
   }

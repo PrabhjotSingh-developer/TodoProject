@@ -14,6 +14,7 @@ import Important from "./Pages/Important/Important.jsx";
 import { Provider } from "react-redux";
 import store from "./App/Store.js";
 import AllTask from "./Pages/AllTasks/AllTask.jsx";
+import { ToastContainer } from "react-toastify";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer autoClose={1500}/>
     </Provider>
   </React.StrictMode>
 );
