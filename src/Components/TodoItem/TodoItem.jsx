@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import '../../App.css'
 import { FaRegStar,FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import {isTodoCompleted,setImportantTasks} from '../../Features/Todo/TodoSlice.js'
 import { toggleMiniTodo} from '../../Features/Todo/MiniTodo.js';
+
+
 const TodoItem = ({item}) => {
+  const miniState = useSelector((state)=>state.miniBar.miniTodo)
   
     const dispatch = useDispatch()
     function todoCompleted(id)
@@ -17,9 +20,10 @@ const TodoItem = ({item}) => {
        dispatch(setImportantTasks(id))
        console.log(item)
     }
-    function toggleTodo()
+    function toggleTodo(e)
     {
-    
+      if(miniState.isOpen)
+          window.scrollTo({top:0,behavior:"smooth"})
       dispatch(toggleMiniTodo({isOpen:true,item}))
       
     }

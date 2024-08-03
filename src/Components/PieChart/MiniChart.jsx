@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { useEffect } from 'react';
 
-const data = [
-  { name: 'Pending', value: 700 },
-  { name: 'Fulfilled', value: 300 },
- 
-];
 const COLORS = ['#3F9142', ' #142E15']
 const MiniChart = () => {
+
+const allTodos = useSelector((state)=>state.todos.allTask);
+console.log(allTodos)
+const [completedTask,setCompletedTask] = useState([]);
+useEffect(()=>{
+    const items = allTodos.filter((item)=>item.completed === true )
+    setCompletedTask(items);
+},[allTodos])
+const data = [
+  { name: 'Pending', value: allTodos.length - completedTask.length },
+  { name: 'Fulfilled', value: completedTask.length },
+ 
+];
+
+
     return (
         <PieChart width={152} height={152} >
           <Pie

@@ -44,7 +44,7 @@ const LinksNames = [
   },
 ];
 const SideBar = () => {
-  
+  const allTodos = useSelector((state)=>state.todos.allTask)
   const theme = useSelector((state)=>state.theme.theme)
   const mobileBar = useSelector((state)=>state.menubar.mobileBar);
   const dispatch = useDispatch();
@@ -58,11 +58,11 @@ const SideBar = () => {
      
   }
   return (
-    <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-4 `} style={{transition:".3s linear all"}}>
-      <div className=" w-[118px] h-[118px] ">
+    <div className={`flex justify-center  px-24 flex-col items-center relative z-[5] pt-4 ${bgColor}`} >
+      <div className={` w-[118px] h-[118px]`}>
         <img src={profile} alt="" className="w-[100%] h-[100%]" />
       </div>
-      <div className={`contentBox ${bgColor} w-[100%] flex flex-col items-center absolute top-[60%] z-[-1] pt-[4.5rem] h-[900px] text-font gap-[9px]`}>
+      <div className={`contentBox ${bgColor} w-[100%] flex flex-col items-center absolute top-[60%] z-[-1] pt-[4.5rem] h-[900px] text-font gap-[9px]`} style={{transition:".3s linear all"}}>
         <h2 className="font-normal leading-[20px] text-[15px]">Hey, ABCD</h2>
         <div className={`${theme === 'light'?'back-color-whitish':"bg-[#232323]"} py-[24px] w-[240px] mainLinks`}>
           <ul className="">
@@ -96,10 +96,10 @@ const SideBar = () => {
         <div className={`chart  flex items-center flex-col w-[236px] h-[307px]  text-font ${theme === 'light'? 'back-color-whitish':"bg-[#232323]"}`} >
           <div className="totalTasks flex flex-col w-[100%] px-[8px] py-[16px]  ">
             <div className="flex justify-between items-center w-[100%] ">
-              <h3 className="text-14px">Today Tasks</h3>
+              <h3 className="text-14px">All Tasks</h3>
               <span className="w-[16px] h-[16px] bg-[#BDBDBD] rounded-[50%] text-white flex justify-center items-center ">i</span>
             </div>
-            <p className="text-[22px] font-semibold">12</p>
+            <p className="text-[22px] font-semibold">{allTodos.length}</p>
           </div>
           <div className="mainChart py-4">
             <MiniChart />

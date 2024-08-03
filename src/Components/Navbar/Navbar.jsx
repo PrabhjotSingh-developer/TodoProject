@@ -22,8 +22,8 @@ const Navbar = () => {
     if (widthScreen < 1280) dispatch(mobileToggle());
   }
   return (
-    <div className={`py-[12px]  `}>
-      <nav className="flex items-center justify-between ">
+    <div className={`py-[12px] `}>
+      <nav className={`flex items-center justify-between py-4 md:py-0 ` }>
         <div className={`flex items-center gap-[24px] `}>
           <FaBars
             className={`w-[24px] h-[24px] xl:hidden`}
@@ -50,12 +50,12 @@ const Navbar = () => {
       </nav>
       {/* <SideBar/> */}
       <div
-        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%] ${
+        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%]   ${
           mobileBar ? "" : "translate-x-[-120%] "
         }`}
         style={{ transition: ".3s linear all" }}
       >
-        <div className="absolute top-0 w-[100%]  ">
+        <div className="absolute top-0 w-[100%]  h-[100vh]  overflow-scroll md:overflow-visible ">
           <SideBar />
         </div>
       </div>
