@@ -6,7 +6,7 @@ const Important = () => {
   const allTodos = useSelector((state) => state.todos.allTask);
  const [impTask,setImpTask] = useState([]);
  const [completeTask,setCompletedTask] = useState([]);
-console.log(impTask)
+ 
   useEffect(()=>{
       const imp =  allTodos.filter((item)=> item.important)
       setImpTask(imp)

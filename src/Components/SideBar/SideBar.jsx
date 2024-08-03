@@ -52,7 +52,7 @@ const SideBar = () => {
   const bgColor = (theme === "light") ?"back-color":"bg-[#2C2C2C]"
   function closeMenubar()
   {
-      dispatch(toggleMiniTodo({...state,isOpen:false}))
+      dispatch(toggleMiniTodo({isOpen:false}))
         dispatch(mobileToggle())
   }
   return (
