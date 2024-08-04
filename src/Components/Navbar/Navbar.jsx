@@ -35,7 +35,7 @@ const Navbar = () => {
           {/* logo icon -> */}
           <div className="logoIcon flex items-center">
             <img className="w-[32px] h-[32px]" src={LogoImg} alt="" />
-            <h2 className="font-[700] text-color text-[24px]">DoIt</h2>
+            <h2 className="font-[700] text-color text-[24px]">TaskFlow</h2>
           </div>
         </div>
         <div className="flex gap-[24px] relative ">
