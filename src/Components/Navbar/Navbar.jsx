@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import LogoImg from "../../assets/logomark.png";
 import { CiGrid41, CiSearch } from "react-icons/ci";
@@ -11,7 +11,9 @@ import { mobileToggle } from "../../Features/Todo/MenuSlice";
 
 const Navbar = () => {
   const theme = useSelector((state) => state.theme);
+  
   const mobileBar = useSelector((state) => state.menubar.mobileBar);
+
   const miniState = useSelector((state)=>state.miniBar.miniTodo)
   const bgColor = theme === "light" ? "back-color" : "bg-[#2C2C2C]";
   const dispatch = useDispatch();
@@ -36,8 +38,10 @@ const Navbar = () => {
             <h2 className="font-[700] text-color text-[24px]">DoIt</h2>
           </div>
         </div>
-        <div className="flex gap-[24px]">
-          <CiSearch className="w-[24px] h-[24px]" />
+        <div className="flex gap-[24px] relative ">
+          
+      
+        
           <CiGrid41 className="w-[24px] h-[24px]" />
           {theme === "light" ? (
             <RiMoonClearLine
@@ -51,12 +55,12 @@ const Navbar = () => {
       </nav>
       {/* <SideBar/> */}
       <div
-        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%]    ${
+        className={`flex xl:hidden z-10 relative w-[100%] sm:w-[50%]   ${
           mobileBar ? "" : "translate-x-[-120%] "
         }`}
         style={{ transition: ".3s linear all" }}
       >
-        <div className={`absolute top-0 w-[100%]  ${miniState.isOpen ? "h-[85vh]":"h-[100vh]" }  overflow-scroll md:overflow-visible `}>
+        <div className={`absolute top-0 w-[100%] md:mt-8 lg:mt-0  ${miniState.isOpen ? "h-[85vh]":"h-[100vh]" }  overflow-scroll md:overflow-visible `}>
           <SideBar />
         </div>
       </div>

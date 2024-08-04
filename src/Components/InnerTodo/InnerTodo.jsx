@@ -70,7 +70,7 @@ const InnerTodo = ({ item }) => {
 
   return (
     <div
-      className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[85vh]  md:h-[100%]  relative mainTodo `}
+      className={`flex-col flex gap-5 ${bgColor} w-[100%] py-6 h-[85vh]  md:h-[80%] lg:h-[100%] relative  `}
     >
       <div
         className="w-[100%] h-[80px] py-[16px] pr-[32px] text-font flex items-center justify-between "
@@ -136,7 +136,7 @@ const InnerTodo = ({ item }) => {
             )}
           </button>
         </div>
-        <div
+        {/* <div
           className="px-8 py-2  w-full"
           style={{ borderTop: "1.5px solid #496E4B" }}
         >
@@ -153,7 +153,7 @@ const InnerTodo = ({ item }) => {
             {" "}
             <CiCalendar className="text-[20px] w-[24px] " /> Add Due Date
           </button>
-        </div>
+        </div> */}
         <div
           className="w-full flex justify-between px-8 pt-4 absolute bottom-[8%]  "
           style={{ borderTop: "1.5px solid #496E4B" }}
